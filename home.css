@@ -238,6 +238,57 @@ a:hover, .btn:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(107,6
 /* keep existing image centering while caption is left-aligned */
 .image-card img { display:block; margin: 0 auto 12px auto; }
 
+/* Evidence grid: 3 cards on first row, 2 on the next (centered) */
+#evidence{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap:28px;
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  justify-items:center; /* center cards inside cells */
+}
+
+#evidence h1{
+  grid-column:1 / -1; /* heading spans full width */
+  width:100%;
+  margin-bottom:18px;
+  display:block;
+}
+
+/* If the last row has 2 items, center them in a 3-col grid */
+#evidence > .image-card:nth-last-child(2):nth-child(3n + 1){
+  grid-column:2; /* move first of the last two to the middle column */
+}
+
+/* Card sizing inside grid cells */
+.image-card{
+  width:100%;
+  max-width:320px;
+  min-width:260px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:#f3e7db;
+  border-radius:16px;
+  box-shadow:0 4px 18px rgba(107,62,38,0.08);
+  padding:18px 16px;
+  border:1px solid #e9ddd5;
+  transition: box-shadow 0.18s, transform 0.18s;
+  min-height:340px;
+  position:relative;
+}
+
+/* Responsive: 2 per row on tablets, 1 on phones */
+@media (max-width: 900px){
+  #evidence{ grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+}
+@media (max-width: 560px){
+  #evidence{ grid-template-columns: 1fr; }
+}
+
 /* Footer / contact styles (centered stack) */
 .site-footer{
   max-width:980px;
